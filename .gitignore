@@ -1,0 +1,25 @@
+
+
+# Bytecode compiled by the JVM
+*.class
+
+
+
+# IntelliJ IDEA
+.idea/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbactions.xml
+
+# Spring Boot specific
+/.mvn/
+mvnw
+mvnw.cmd
