@@ -9,7 +9,7 @@ Este es un proyecto backend desarrollado con Spring Boot que utiliza una base de
 1. Clona el repositorio en tu máquina local:
    
    ```bash
-   [git clone https://github.com/tu-usuario/proyecto-backend-spring-boot.git](https://github.com/LoreLor/revision_asientos_api.git)
+   git clone https://github.com/LoreLor/revision_asientos_api.git
    ```
    
 3. Crea una base de datos llamada 'revision'.
