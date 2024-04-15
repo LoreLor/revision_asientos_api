@@ -1,24 +1,20 @@
-package com.ayigroup.revision_asientos.entities;
+package com.ayigroup.revision_asientos.entities.dtos;
 
 import lombok.*;
 
-
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
-import java.util.Date;
 
-@Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
-@Getter
 @Builder
-@Table(name="asientos")
-public class Asiento {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ListaAsientosDTO {
+
     private Integer id;
 
     @NotNull
@@ -30,14 +26,6 @@ public class Asiento {
 
     @NotNull
     @Size(max=100)
-    private String compania;
-
-    @NotNull
-    @Size(max=100)
-    private String unidadDeNegocio;
-
-    @NotNull
-    @Size(max=100)
     private String cuentaObjeto;
 
     @NotNull
@@ -45,20 +33,9 @@ public class Asiento {
     private String cuentaAuxiliar;
 
     @NotNull
-    @Size(max=50)
-    private String libro;
-
-
-    private Integer lieneaAsiento;
-
-    @NotNull
-    private Date fechaContable;
-
-    @NotNull
     private BigDecimal importe;
 
     @NotNull
     @Size(max=100)
     private String estadoProceso;
-
 }

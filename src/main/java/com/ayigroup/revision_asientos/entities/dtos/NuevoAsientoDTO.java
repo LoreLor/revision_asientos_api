@@ -1,25 +1,20 @@
-package com.ayigroup.revision_asientos.entities;
+package com.ayigroup.revision_asientos.entities.dtos;
 
 import lombok.*;
 
-
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
-@Getter
 @Builder
-@Table(name="asientos")
-public class Asiento {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class NuevoAsientoDTO {
 
     @NotNull
     private Integer nroDocumento;
