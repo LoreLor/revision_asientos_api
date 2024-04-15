@@ -37,9 +37,9 @@ La aplicación se ejecutará en http://localhost:8082. Puedes probar los endpoin
 
 ## Endpoints
 
-* GET /revisionasientos: Obtener todos los recursos.
-* GET /revisionasientos/{id}: Obtener un recurso por ID.
-* POST /revisionasientos: Crear un nuevo recurso.
+* GET /revisionasientos: Obtener todos los asientos.
+* GET /revisionasientos/{id}: Obtener un asiento por ID.
+* POST /revisionasientos: Crear un nuevo asiento.
 * (trabajando en endpoint filtros)
 
 
