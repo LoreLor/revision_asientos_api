@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -42,5 +43,22 @@ public class AsientoController {
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @PostMapping("/filtros")
+    public ResponseEntity<List<AsientoDTO>> filtrarAsientos(@RequestBody AsientoDTO filtro) {
+        List<AsientoDTO> asientosFiltrados = asientoService.filtrarAsientos(
+                filtro.getNroDocumento(),
+                filtro.getTipoDocumento(),
+                filtro.getCompania(),
+                filtro.getUnidadDeNegocio(),
+                filtro.getCuentaObjeto(),
+                filtro.getCuentaAuxiliar(),
+                filtro.getLibro(),
+                filtro.getLineaAsiento(),
+                filtro.getFechaContable(),
+                filtro.getEstadoProceso()
+        );
+        return new ResponseEntity<>(asientosFiltrados, HttpStatus.OK);
     }
 }

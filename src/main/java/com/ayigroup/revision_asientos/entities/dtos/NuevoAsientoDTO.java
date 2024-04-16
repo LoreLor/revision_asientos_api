@@ -44,7 +44,7 @@ public class NuevoAsientoDTO {
     private String libro;
 
 
-    private Integer lieneaAsiento;
+    private Integer lineaAsiento;
 
     @NotNull
     private Date fechaContable;

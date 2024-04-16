@@ -9,6 +9,7 @@ import com.ayigroup.revision_asientos.services.AsientoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,6 +40,27 @@ public class AsientoServiceImpl implements AsientoService {
         return convertirAAsientoDTO(asiento);
     }
 
+    @Override
+    public List<AsientoDTO> filtrarAsientos(Integer nroDocumento,
+                                            String tipoDocumento,
+                                            String compania,
+                                            String unidadDeNegocio,
+                                            String cuentaObjeto,
+                                            String cuentaAuxiliar,
+                                            String libro,
+                                            Integer lieneaAsiento,
+                                            Date fechaContable,
+                                            String estadoProceso){
+
+        List<Asiento> asientosFiltrados = asientoRepository.findByNroDocumentoAndTipoDocumentoAndCompaniaAndUnidadDeNegocioAndCuentaObjetoAndCuentaAuxiliarAndLibroAndLineaAsientoAndFechaContableAndEstadoProceso(nroDocumento,
+                tipoDocumento, compania, unidadDeNegocio, cuentaObjeto, cuentaAuxiliar, libro, lieneaAsiento, fechaContable, estadoProceso);
+
+        return asientosFiltrados.stream()
+                .map(this::convertirAAsientoDTO)
+                .collect(Collectors.toList());
+    }
+
+
 
     // Métodos de conversión
 
@@ -51,7 +73,7 @@ public class AsientoServiceImpl implements AsientoService {
         asiento.setUnidadDeNegocio(nuevoAsiento.getUnidadDeNegocio());
         asiento.setCuentaObjeto(nuevoAsiento.getCuentaObjeto());
         asiento.setCuentaAuxiliar(nuevoAsiento.getCuentaAuxiliar());
-        asiento.setLieneaAsiento(nuevoAsiento.getLieneaAsiento());
+        asiento.setLineaAsiento(nuevoAsiento.getLineaAsiento());
         asiento.setLibro(nuevoAsiento.getLibro());
         asiento.setFechaContable(nuevoAsiento.getFechaContable());
         asiento.setImporte(nuevoAsiento.getImporte());
@@ -59,7 +81,7 @@ public class AsientoServiceImpl implements AsientoService {
         return asiento;
     }
 
-    // Detalle
+    // Detalle - Filtro
     private AsientoDTO convertirAAsientoDTO(Asiento asiento) {
         AsientoDTO asientoDTO = new AsientoDTO();
         asientoDTO.setId(asiento.getId());
@@ -69,7 +91,7 @@ public class AsientoServiceImpl implements AsientoService {
         asientoDTO.setUnidadDeNegocio(asiento.getUnidadDeNegocio());
         asientoDTO.setCuentaObjeto(asiento.getCuentaObjeto());
         asientoDTO.setCuentaAuxiliar(asiento.getCuentaAuxiliar());
-        asientoDTO.setLieneaAsiento(asiento.getLieneaAsiento());
+        asientoDTO.setLineaAsiento(asiento.getLineaAsiento());
         asientoDTO.setLibro(asiento.getLibro());
         asientoDTO.setFechaContable(asiento.getFechaContable());
         asientoDTO.setImporte(asiento.getImporte());
