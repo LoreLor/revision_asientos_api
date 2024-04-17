@@ -9,6 +9,7 @@ import com.ayigroup.revision_asientos.services.AsientoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,19 +42,40 @@ public class AsientoServiceImpl implements AsientoService {
     }
 
     @Override
-    public List<AsientoDTO> filtrarAsientos(Integer nroDocumento,
+    public List<AsientoDTO> filtrarAsientos(Integer id,
+                                            Integer nroDocumento,
                                             String tipoDocumento,
-                                            String compania,
-                                            String unidadDeNegocio,
+                                            Integer nroOrdenCompra,
+                                            Integer nroSubledger,
+                                            String negocio,
+                                            Integer planta,
+                                            Integer centroCosto,
+                                            Integer linea,
                                             String cuentaObjeto,
                                             String cuentaAuxiliar,
-                                            String libro,
-                                            Integer lieneaAsiento,
                                             Date fechaContable,
-                                            String estadoProceso){
+                                            BigDecimal importe,
+                                            String estadoProceso,
+                                            String compania,
+                                            String libro){
 
-        List<Asiento> asientosFiltrados = asientoRepository.findByNroDocumentoAndTipoDocumentoAndCompaniaAndUnidadDeNegocioAndCuentaObjetoAndCuentaAuxiliarAndLibroAndLineaAsientoAndFechaContableAndEstadoProceso(nroDocumento,
-                tipoDocumento, compania, unidadDeNegocio, cuentaObjeto, cuentaAuxiliar, libro, lieneaAsiento, fechaContable, estadoProceso);
+        List<Asiento> asientosFiltrados = asientoRepository.findByIdAndNroDocumentoAndTipoDocumentoAndNroOrdenCompraAndNroSubledgerAndNegocioAndPlantaAndCentroCostoAndLineaAndCuentaObjetoAndCuentaAuxiliarAndFechaContableAndImporteAndEstadoProcesoAndLibroAndCompania(
+                id,
+                nroDocumento,
+                tipoDocumento,
+                nroOrdenCompra,
+                nroSubledger,
+                negocio,
+                planta,
+                centroCosto,
+                linea,
+                cuentaObjeto,
+                cuentaAuxiliar,
+                fechaContable,
+                importe,
+                estadoProceso,
+                compania,
+                libro);
 
         return asientosFiltrados.stream()
                 .map(this::convertirAAsientoDTO)
@@ -67,48 +89,65 @@ public class AsientoServiceImpl implements AsientoService {
     // Agregar
     private Asiento convertirANuevoAsientoDTO(NuevoAsientoDTO nuevoAsiento) {
         Asiento asiento = new Asiento();
+
+        asiento.setId(nuevoAsiento.getId());
         asiento.setNroDocumento(nuevoAsiento.getNroDocumento());
         asiento.setTipoDocumento(nuevoAsiento.getTipoDocumento());
-        asiento.setCompania(nuevoAsiento.getCompania());
-        asiento.setUnidadDeNegocio(nuevoAsiento.getUnidadDeNegocio());
+        asiento.setNroSubledger(nuevoAsiento.getNroSubledger());
+        asiento.setNegocio(nuevoAsiento.getNegocio());
+        asiento.setPlanta(nuevoAsiento.getPlanta());
+        asiento.setCentroCosto(nuevoAsiento.getCentroCosto());
+        asiento.setLinea(nuevoAsiento.getLinea());
         asiento.setCuentaObjeto(nuevoAsiento.getCuentaObjeto());
         asiento.setCuentaAuxiliar(nuevoAsiento.getCuentaAuxiliar());
-        asiento.setLineaAsiento(nuevoAsiento.getLineaAsiento());
-        asiento.setLibro(nuevoAsiento.getLibro());
         asiento.setFechaContable(nuevoAsiento.getFechaContable());
         asiento.setImporte(nuevoAsiento.getImporte());
         asiento.setEstadoProceso(nuevoAsiento.getEstadoProceso());
+        asiento.setCompania(nuevoAsiento.getCompania());
+        asiento.setLibro(nuevoAsiento.getLibro());
         return asiento;
     }
 
     // Detalle - Filtro
     private AsientoDTO convertirAAsientoDTO(Asiento asiento) {
         AsientoDTO asientoDTO = new AsientoDTO();
+
         asientoDTO.setId(asiento.getId());
         asientoDTO.setNroDocumento(asiento.getNroDocumento());
         asientoDTO.setTipoDocumento(asiento.getTipoDocumento());
-        asientoDTO.setCompania(asiento.getCompania());
-        asientoDTO.setUnidadDeNegocio(asiento.getUnidadDeNegocio());
+        asientoDTO.setNroSubledger(asiento.getNroSubledger());
+        asientoDTO.setNegocio(asiento.getNegocio());
+        asientoDTO.setPlanta(asiento.getPlanta());
+        asientoDTO.setCentroCosto(asiento.getCentroCosto());
+        asientoDTO.setLinea(asiento.getLinea());
         asientoDTO.setCuentaObjeto(asiento.getCuentaObjeto());
         asientoDTO.setCuentaAuxiliar(asiento.getCuentaAuxiliar());
-        asientoDTO.setLineaAsiento(asiento.getLineaAsiento());
-        asientoDTO.setLibro(asiento.getLibro());
         asientoDTO.setFechaContable(asiento.getFechaContable());
         asientoDTO.setImporte(asiento.getImporte());
         asientoDTO.setEstadoProceso(asiento.getEstadoProceso());
+        asientoDTO.setCompania(asiento.getCompania());
+        asientoDTO.setLibro(asiento.getLibro());
         return asientoDTO;
     }
 
     // Listado
     private ListaAsientosDTO convertirAListaAsientosDTO(Asiento asiento) {
         ListaAsientosDTO listaAsientosDTO = new ListaAsientosDTO();
-        listaAsientosDTO.setId(asiento.getId());
+
         listaAsientosDTO.setNroDocumento(asiento.getNroDocumento());
         listaAsientosDTO.setTipoDocumento(asiento.getTipoDocumento());
+        listaAsientosDTO.setNroSubledger(asiento.getNroSubledger());
+        listaAsientosDTO.setNegocio(asiento.getNegocio());
+        listaAsientosDTO.setPlanta(asiento.getPlanta());
+        listaAsientosDTO.setCentroCosto(asiento.getCentroCosto());
+        listaAsientosDTO.setLinea(asiento.getLinea());
         listaAsientosDTO.setCuentaObjeto(asiento.getCuentaObjeto());
         listaAsientosDTO.setCuentaAuxiliar(asiento.getCuentaAuxiliar());
+        listaAsientosDTO.setFechaContable(asiento.getFechaContable());
         listaAsientosDTO.setImporte(asiento.getImporte());
         listaAsientosDTO.setEstadoProceso(asiento.getEstadoProceso());
+        listaAsientosDTO.setCompania(asiento.getCompania());
+        listaAsientosDTO.setLibro(asiento.getLibro());
         return listaAsientosDTO;
     }
 }

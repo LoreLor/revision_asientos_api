@@ -48,16 +48,22 @@ public class AsientoController {
     @PostMapping("/filtros")
     public ResponseEntity<List<AsientoDTO>> filtrarAsientos(@RequestBody AsientoDTO filtro) {
         List<AsientoDTO> asientosFiltrados = asientoService.filtrarAsientos(
+                filtro.getId(),
                 filtro.getNroDocumento(),
                 filtro.getTipoDocumento(),
-                filtro.getCompania(),
-                filtro.getUnidadDeNegocio(),
+                filtro.getNroOrdenCompra(),
+                filtro.getNroSubledger(),
+                filtro.getNegocio(),
+                filtro.getPlanta(),
+                filtro.getLinea(),
+                filtro.getCentroCosto(),
                 filtro.getCuentaObjeto(),
                 filtro.getCuentaAuxiliar(),
-                filtro.getLibro(),
-                filtro.getLineaAsiento(),
                 filtro.getFechaContable(),
-                filtro.getEstadoProceso()
+                filtro.getImporte(),
+                filtro.getEstadoProceso(),
+                filtro.getCompania(),
+                filtro.getLibro()
         );
         return new ResponseEntity<>(asientosFiltrados, HttpStatus.OK);
     }

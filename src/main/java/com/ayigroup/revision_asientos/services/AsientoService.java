@@ -5,6 +5,7 @@ import com.ayigroup.revision_asientos.entities.dtos.AsientoDTO;
 import com.ayigroup.revision_asientos.entities.dtos.ListaAsientosDTO;
 import com.ayigroup.revision_asientos.entities.dtos.NuevoAsientoDTO;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -13,15 +14,21 @@ public interface AsientoService {
     List<ListaAsientosDTO>mostrarAsientos();
     NuevoAsientoDTO agregarAsiento(NuevoAsientoDTO nuevoAsiento);
     AsientoDTO asientoById(Integer id);
-    List<AsientoDTO> filtrarAsientos(Integer nroDocumento,
+    List<AsientoDTO> filtrarAsientos(Integer id,
+                                     Integer nroDocumento,
                                      String tipoDocumento,
-                                     String compania,
-                                     String unidadDeNegocio,
+                                     Integer nroOrdenCompra,
+                                     Integer nroSubledger,
+                                     String negocio,
+                                     Integer planta,
+                                     Integer linea,
+                                     Integer centroCosto,
                                      String cuentaObjeto,
                                      String cuentaAuxiliar,
-                                     String libro,
-                                     Integer lieneaAsiento,
                                      Date fechaContable,
-                                     String estadoProceso
+                                     BigDecimal importe,
+                                     String estadoProceso,
+                                     String compania,
+                                     String libro
     );
 }
