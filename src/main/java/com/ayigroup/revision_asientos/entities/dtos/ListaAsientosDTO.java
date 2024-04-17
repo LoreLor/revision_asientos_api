@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -15,6 +16,8 @@ import java.math.BigDecimal;
 @Builder
 public class ListaAsientosDTO {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull
@@ -25,6 +28,28 @@ public class ListaAsientosDTO {
     private String tipoDocumento;
 
     @NotNull
+    private Integer nroOrdenCompra;
+
+    @NotNull
+    private Integer nroSubledger;
+
+    @NotNull
+    @Size(max=2)
+    private String negocio;
+
+    @NotNull
+    @Size(max=2)
+    private Integer planta;
+
+    @NotNull
+    @Size(max=4)
+    private Integer centroCosto;
+
+    @NotNull
+    @Size(max=4)
+    private Integer linea;
+
+    @NotNull
     @Size(max=100)
     private String cuentaObjeto;
 
@@ -33,9 +58,21 @@ public class ListaAsientosDTO {
     private String cuentaAuxiliar;
 
     @NotNull
+    private Date fechaContable;
+
+    @NotNull
     private BigDecimal importe;
 
     @NotNull
     @Size(max=100)
     private String estadoProceso;
+
+    @NotNull
+    @Size(max=100)
+    private String compania;
+
+    @NotNull
+    @Size(max=50)
+    private String libro;
+
 }

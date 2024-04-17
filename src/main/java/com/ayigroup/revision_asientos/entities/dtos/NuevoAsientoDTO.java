@@ -15,6 +15,9 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 public class NuevoAsientoDTO {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @NotNull
     private Integer nroDocumento;
@@ -24,12 +27,26 @@ public class NuevoAsientoDTO {
     private String tipoDocumento;
 
     @NotNull
-    @Size(max=100)
-    private String compania;
+    private Integer nroOrdenCompra;
 
     @NotNull
-    @Size(max=100)
-    private String unidadDeNegocio;
+    private Integer nroSubledger;
+
+    @NotNull
+    @Size(max=2)
+    private String negocio;
+
+    @NotNull
+    @Size(max=2)
+    private Integer planta;
+
+    @NotNull
+    @Size(max=4)
+    private Integer centroCosto;
+
+    @NotNull
+    @Size(max=4)
+    private Integer linea;
 
     @NotNull
     @Size(max=100)
@@ -40,13 +57,6 @@ public class NuevoAsientoDTO {
     private String cuentaAuxiliar;
 
     @NotNull
-    @Size(max=50)
-    private String libro;
-
-
-    private Integer lineaAsiento;
-
-    @NotNull
     private Date fechaContable;
 
     @NotNull
@@ -55,5 +65,13 @@ public class NuevoAsientoDTO {
     @NotNull
     @Size(max=100)
     private String estadoProceso;
+
+    @NotNull
+    @Size(max=100)
+    private String compania;
+
+    @NotNull
+    @Size(max=50)
+    private String libro;
 
 }
