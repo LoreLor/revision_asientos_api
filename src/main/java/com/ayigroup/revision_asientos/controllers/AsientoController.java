@@ -16,7 +16,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/revisionasientos")
-@CrossOrigin(origins = "*", methods = {RequestMethod.POST, RequestMethod.GET})
 public class AsientoController {
 
     @Autowired

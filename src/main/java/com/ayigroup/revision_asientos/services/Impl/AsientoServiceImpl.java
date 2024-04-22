@@ -92,6 +92,7 @@ public class AsientoServiceImpl implements AsientoService {
 
         asiento.setId(nuevoAsiento.getId());
         asiento.setNroDocumento(nuevoAsiento.getNroDocumento());
+        asiento.setNroOrdenCompra(nuevoAsiento.getNroOrdenCompra());
         asiento.setTipoDocumento(nuevoAsiento.getTipoDocumento());
         asiento.setNroSubledger(nuevoAsiento.getNroSubledger());
         asiento.setNegocio(nuevoAsiento.getNegocio());
@@ -114,6 +115,7 @@ public class AsientoServiceImpl implements AsientoService {
 
         asientoDTO.setId(asiento.getId());
         asientoDTO.setNroDocumento(asiento.getNroDocumento());
+        asientoDTO.setNroOrdenCompra(asiento.getNroOrdenCompra());
         asientoDTO.setTipoDocumento(asiento.getTipoDocumento());
         asientoDTO.setNroSubledger(asiento.getNroSubledger());
         asientoDTO.setNegocio(asiento.getNegocio());
@@ -134,8 +136,10 @@ public class AsientoServiceImpl implements AsientoService {
     private ListaAsientosDTO convertirAListaAsientosDTO(Asiento asiento) {
         ListaAsientosDTO listaAsientosDTO = new ListaAsientosDTO();
 
+        listaAsientosDTO.setId(asiento.getId());
         listaAsientosDTO.setNroDocumento(asiento.getNroDocumento());
         listaAsientosDTO.setTipoDocumento(asiento.getTipoDocumento());
+        listaAsientosDTO.setNroOrdenCompra(asiento.getNroOrdenCompra());
         listaAsientosDTO.setNroSubledger(asiento.getNroSubledger());
         listaAsientosDTO.setNegocio(asiento.getNegocio());
         listaAsientosDTO.setPlanta(asiento.getPlanta());
